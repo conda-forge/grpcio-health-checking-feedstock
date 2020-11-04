@@ -9,6 +9,8 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/grpcio-health-c
 
 Summary: Standard Health Checking Service for gRPC
 
+Development: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
+
 Current build status
 ====================
 

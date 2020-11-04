@@ -1,6 +1,9 @@
 {% set name = "grpcio-health-checking" %}
 {% set version = "1.33.2" %}
 
+# TODO: this upstream pin appears to not be updated w/r/t to code generation version
+{% set min_protobuf = "3.12.1" %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -10,7 +13,7 @@ source:
   sha256: 35f8bce59f5e3b16ac524f954597dc54195e3277b1d600c96f54fc64780ebdf6
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -20,7 +23,7 @@ requirements:
     - python >=3.5
   run:
     - grpcio >={{ version }}
-    - protobuf >=3.6.0
+    - protobuf >={{ min_protobuf }}
     - python >=3.5
 
 test:
@@ -28,17 +31,20 @@ test:
     - grpc_version.py
   imports:
     - grpc_health
-    - grpc_health.v1
+    - grpc_health.v1.health
   commands:
     - pip check
   requires:
     - pip
+    # do import tests with the minimum to assure it hasn't changed
+    - protobuf =={{ min_protobuf }}
 
 about:
   home: https://grpc.io
   summary: Standard Health Checking Service for gRPC
   license: Apache-2.0
   license_file: LICENSE
+  dev_url: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
 
 extra:
   recipe-maintainers:

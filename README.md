@@ -11,6 +11,8 @@ Summary: Standard Health Checking Service for gRPC
 
 Development: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
 
+Documentation: https://grpc.github.io/grpc/python/grpc_health_checking.html
+
 Current build status
 ====================
 

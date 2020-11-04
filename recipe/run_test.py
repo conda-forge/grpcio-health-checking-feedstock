@@ -4,8 +4,9 @@
     Historically, the grpc_version.VERSION has always matched PKG_VERSION.
 """
 import os
-import grpc_version
 import sys
+sys.path.append("dist")
+import grpc_version
 
 PKG_VERSION = os.environ["PKG_VERSION"]
 GRPC_VERSION = grpc_version.VERSION

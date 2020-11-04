@@ -1,18 +1,25 @@
 {% set name = "grpcio-health-checking" %}
 {% set version = "1.33.2" %}
 
+# TODO: this upstream pin appears to not be updated w/r/t to code generation version
+{% set min_protobuf = "3.12.1" %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 35f8bce59f5e3b16ac524f954597dc54195e3277b1d600c96f54fc64780ebdf6
+  - folder: dist
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: 35f8bce59f5e3b16ac524f954597dc54195e3277b1d600c96f54fc64780ebdf6
+  - folder: src
+    url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz
+    sha256: 2060769f2d4b0d3535ba594b2ab614d7f68a492f786ab94b4318788d45e3278a
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
@@ -20,25 +27,46 @@ requirements:
     - python >=3.5
   run:
     - grpcio >={{ version }}
-    - protobuf >=3.6.0
+    - protobuf >={{ min_protobuf }}
     - python >=3.5
 
 test:
   source_files:
-    - grpc_version.py
+    # checked grpc version in run_test.py
+    - dist/grpc_version.py
+    # the actual tests to run under coverage
+    - src/src/python/grpcio_tests/tests/health_check/
+    # test imports
+    - src/src/python/grpcio_tests/tests/__init__.py
+    - src/src/python/grpcio_tests/tests/_loader.py
+    - src/src/python/grpcio_tests/tests/_result.py
+    - src/src/python/grpcio_tests/tests/_runner.py
+    - src/src/python/grpcio_tests/tests/unit/__init__.py
+    - src/src/python/grpcio_tests/tests/unit/framework/__init__.py
+    - src/src/python/grpcio_tests/tests/unit/framework/common/__init__.py
+    - src/src/python/grpcio_tests/tests/unit/framework/common/test_constants.py
+    - src/src/python/grpcio_tests/tests/unit/test_common.py
+    - src/src/python/grpcio_tests/tests/unit/thread_pool.py
   imports:
     - grpc_health
-    - grpc_health.v1
+    - grpc_health.v1.health
   commands:
     - pip check
+    - cd src/src/python/grpcio_tests
+    - pytest -vv -k health_check --cov grpc_health --cov-fail-under 77
   requires:
     - pip
+    - pytest-cov
+    # do import tests with the minimum to assure it hasn't changed
+    - protobuf =={{ min_protobuf }}
 
 about:
   home: https://grpc.io
   summary: Standard Health Checking Service for gRPC
   license: Apache-2.0
-  license_file: LICENSE
+  license_file: dist/LICENSE
+  dev_url: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
+  doc_url: https://grpc.github.io/grpc/python/grpc_health_checking.html
 
 extra:
   recipe-maintainers:

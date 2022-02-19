@@ -53,7 +53,7 @@ test:
   commands:
     - pip check
     - cd src/src/python/grpcio_tests
-    - pytest -vv -k health_check --cov grpc_health --cov-fail-under 77
+    - pytest -vv -k health_check --cov grpc_health --cov-fail-under 73
   requires:
     - pip
     - pytest-cov

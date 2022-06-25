@@ -27,7 +27,7 @@ requirements:
     - python >=3.5
   run:
     - grpcio >={{ version }}
-    # - protobuf >={{ min_protobuf }}
+    - protobuf >={{ min_protobuf }}
     - python >=3.5
 
 test:
@@ -57,8 +57,8 @@ test:
   requires:
     - pip
     - pytest-cov
-    # do import tests with the minimum to assure it hasn't changed
-    - protobuf =={{ min_protobuf }}
+    # TODO: do import tests with the minimum to assure it hasn't changed
+    # - protobuf =={{ min_protobuf }}
 
 about:
   home: https://grpc.io

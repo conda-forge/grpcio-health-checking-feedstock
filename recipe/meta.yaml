@@ -27,7 +27,7 @@ requirements:
     - python >=3.5
   run:
     - grpcio >={{ version }}
-    - protobuf >={{ min_protobuf }}
+    # - protobuf >={{ min_protobuf }}
     - python >=3.5
 
 test:

@@ -1,5 +1,5 @@
 {% set name = "grpcio-health-checking" %}
-{% set version = "1.51.1" %}
+{% set version = "1.52.0" %}
 
 # TODO: this upstream pin appears to not be updated w/r/t to code generation version
 {% set min_protobuf = "3.12.1" %}
@@ -11,10 +11,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: a819b4ea15bc0278412ebd8d3f0212bd299b1c579abd7d9648ea88f673d15207
+    sha256: db7d7f70449665cf5b6a17fcb1f835749d4b9d532a05c7716c2ce3ba6effc504
   - folder: src
     url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz
-    sha256: b55696fb249669744de3e71acc54a9382bea0dce7cd5ba379b356b12b82d4229
+    sha256: df9608a5bd4eb6d6b78df75908bb3390efdbbb9e07eddbee325e98cdfad6acd5
 
 build:
   number: 0

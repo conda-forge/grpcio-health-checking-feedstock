@@ -10,7 +10,7 @@ package:
 
 source:
   - folder: dist
-    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/grpcio_health_checking-{{ version }}.tar.gz
     sha256: 9ed03fe1bd414a61f5df9f52f45f9aa42177cdb83712117779a5ed9b8c1b58b2
   - folder: src
     url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz

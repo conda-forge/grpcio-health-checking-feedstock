@@ -14,7 +14,7 @@ source:
     sha256: 9ed03fe1bd414a61f5df9f52f45f9aa42177cdb83712117779a5ed9b8c1b58b2
   - folder: src
     url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz
-    sha256: b147df2f9907cceff281b9ab6ea2a1ee1b62dff60b7857ba3d9516d6ad94c5f3
+    sha256: bdab9cb52e3ee703d6c09d15716bcc10a150b2e9e414182e5b375d32050dba84
 
 build:
   number: 0

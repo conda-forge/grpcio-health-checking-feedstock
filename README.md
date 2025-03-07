@@ -3,7 +3,7 @@ About grpcio-health-checking-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/grpcio-health-checking-feedstock/blob/main/LICENSE.txt)
 
-Home: https://grpc.io
+Home: https://grpc.io/
 
 Package license: Apache-2.0
 

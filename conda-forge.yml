@@ -1,9 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/conda-forge/conda-smithy/main/conda_smithy/data/conda-forge.json#2025-03-06
+bot:
+  inspection: hint-all
+  automerge: true
+  check_solvable: true
+conda_build:
+  pkg_format: '2'
+conda_build_tool: rattler-build
 conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-conda_build:
-  pkg_format: '2'
-bot:
-  automerge: true
-  check_solvable: true

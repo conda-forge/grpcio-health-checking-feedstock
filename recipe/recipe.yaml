@@ -41,7 +41,9 @@ requirements:
 tests:
   - python:
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
       imports:
         - grpc_health
         - grpc_health.v1.health

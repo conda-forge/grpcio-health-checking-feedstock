@@ -6,8 +6,8 @@ context:
   # this upstream pin appears in grpcio_version.py, and has always been the same as `version`
   grpcio_min: ${{ version }}
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
-  protobuf_min: 5.26.1
-  protobuf_max: 6.0dev
+  protobuf_min: "5.30.0"
+  protobuf_max: "7.0.0"
 
 package:
   name: grpcio-health-checking
@@ -71,8 +71,8 @@ tests:
     script:
       env:
         PKG_GRPCIO_MIN: ${{ grpcio_min }}
-        PKG_PROTOBUF_MIN: ${{ protobuf_min}}
-        PKG_PROTOBUF_MAX: ${{ protobuf_max}}
+        PKG_PROTOBUF_MIN: ${{ protobuf_min }}
+        PKG_PROTOBUF_MAX: ${{ protobuf_max }}
       content:
         - python run_test.py
 

@@ -6,8 +6,9 @@ context:
   # this upstream pin appears in grpcio_version.py, and has always been the same as `version`
   grpcio_min: ${{ version }}
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
-  protobuf_min: 6.30.0
-  protobuf_max: 7.0.0
+  protobuf_min: "6.31.1"
+  protobuf_max: "7.0.0"
+  python_check_max: "3.14"
 
 package:
   name: grpcio-health-checking
@@ -43,7 +44,7 @@ tests:
       pip_check: true
       python_version:
         - ${{ python_min }}.*
-        - 3.13.*
+        - ${{ python_check_max }}.*
       imports:
         - grpc_health
         - grpc_health.v1.health

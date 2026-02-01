@@ -74,8 +74,8 @@ tests:
     script:
       env:
         PKG_GRPCIO_MIN: ${{ grpcio_min }}
-        PKG_PROTOBUF_MIN: ${{ protobuf_min}}
-        PKG_PROTOBUF_MAX: ${{ protobuf_max}}
+        PKG_PROTOBUF_MIN: ${{ protobuf_min }}
+        PKG_PROTOBUF_MAX: ${{ protobuf_max }}
       content:
         - python run_test.py
 

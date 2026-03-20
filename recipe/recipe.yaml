@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.78.0"
+  version: "1.78.1"
   # this upstream pin appears in grpcio_version.py, and has always been the same as `version`
   grpcio_min: ${{ version }}
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
@@ -17,10 +17,10 @@ package:
 source:
   - target_directory: dist
     url: https://pypi.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
-    sha256: 78526d5c60b9b99fd18954b89f86d70033c702e96ad6ccc9749baf16136979b3
+    sha256: 563cba3cfa776ae739153dc89b14ddd75d49dba317f82c23eaf20e5b3a01f554
   - target_directory: src
     url: https://github.com/grpc/grpc/archive/v${{ version }}.tar.gz
-    sha256: e2ace790a5f2d0f83259d1390a816a33b013ea34df2e86084d927e58daa4c5d9
+    sha256: 961a44a2a5a50670e58f5e887c17fe70529253da23802245326d681f6d8d1ba6
 
 build:
   number: 0
@@ -83,7 +83,7 @@ about:
   summary: Standard Health Checking Service for gRPC
   license: Apache-2.0
   license_file: dist/LICENSE
-  homepage: https://grpc.io
+  homepage: https://pypi.org/project/grpcio-health-checking
   repository: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
   documentation: https://grpc.github.io/grpc/python/grpc_health_checking.html
 

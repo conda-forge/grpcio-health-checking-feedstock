@@ -83,7 +83,7 @@ about:
   summary: Standard Health Checking Service for gRPC
   license: Apache-2.0
   license_file: dist/LICENSE
-  homepage: https://grpc.io
+  homepage: https://pypi.org/project/grpcio-health-checking
   repository: https://github.com/grpc/grpc/tree/master/src/python/grpcio_health_checking
   documentation: https://grpc.github.io/grpc/python/grpc_health_checking.html
 

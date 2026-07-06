@@ -33,7 +33,7 @@ requirements:
   host:
     - pip
     - python ${{ python_min }}.*
-    - setuptools
+    - setuptools >=77.0.1
   run:
     - grpcio >=${{ grpcio_min }}
     - protobuf >=${{ protobuf_min }},<${{ protobuf_max }}

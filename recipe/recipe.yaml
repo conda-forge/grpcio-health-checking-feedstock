@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.83.1"
+  version: "1.84.0"
   # this upstream pin appears in grpcio_version.py, and has always been the same as `version`
   grpcio_min: ${{ version }}
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
@@ -17,10 +17,10 @@ package:
 source:
   - target_directory: dist
     url: https://pypi.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
-    sha256: d60924e6fbad38f35c372779bc5eb651a00e446d6d24f1d1c72f14297a1d0e56
+    sha256: c69ea3775a5f90cd094f294859dfd0150a560f7101a8936bf7b4e08b7186a14e
   - target_directory: src
     url: https://github.com/grpc/grpc/archive/v${{ version }}.tar.gz
-    sha256: 60caa8397426d8a500e3e57ab6a49d1cb5aa62a36f2591eb9da3d77fa38ad8c9
+    sha256: 17a4d25717f4871eb71cfdf191f7491f66a59c8ebc782ab53d52fcbfc478959f
 
 build:
   number: 0

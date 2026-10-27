@@ -42,9 +42,11 @@ requirements:
 tests:
   - package_contents:
       strict: true
+      files:
+        - etc/conda/test-files/grpcio-health-checking/**
       site_packages:
         - grpc_health/**
-        - grpc_health-${{ version }}.dist-info/**
+        - grpcio_health_checking-${{ version }}.dist-info/**
   - python:
       pip_check: true
       python_version:
@@ -60,18 +62,18 @@ tests:
         - dist/setup.py
         - dist/grpc_version.py
         # the actual tests to run under coverage
-        - src/src/python/grpcio_tests/tests/health_check/
+        - src/src/python/grpcio_tests/tests/health_check/**
+        - src/src/python/grpcio_tests/tests_aio/health_check/**
         # test imports
-        - src/src/python/grpcio_tests/tests/__init__.py
-        - src/src/python/grpcio_tests/tests/_loader.py
-        - src/src/python/grpcio_tests/tests/_result.py
-        - src/src/python/grpcio_tests/tests/_runner.py
+        - src/src/python/grpcio_tests/tests/{__init__,_loader,_result,_runner}.py
         - src/src/python/grpcio_tests/tests/unit/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/common/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/common/test_constants.py
         - src/src/python/grpcio_tests/tests/unit/test_common.py
         - src/src/python/grpcio_tests/tests/unit/thread_pool.py
+        # async imports
+        - src/src/python/grpcio_tests/tests_aio/unit/{__init__,_test_base}.py
     requirements:
       run:
         - pytest-cov

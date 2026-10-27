@@ -1,5 +1,5 @@
 bot:
-  inspection: hint-grayskull
+  inspection: hint-all
   automerge: true
   check_solvable: true
 conda_build:

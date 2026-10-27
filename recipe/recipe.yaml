@@ -8,7 +8,7 @@ context:
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
   protobuf_min: "7.35.1"
   protobuf_max: "8.0.0"
-  python_check_max: "3.14"
+  python_check_max: "3.15"
 
 package:
   name: grpcio-health-checking
@@ -16,7 +16,7 @@ package:
 
 source:
   - target_directory: dist
-    url: https://pypi.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
+    url: https://files.pythonhosted.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
     sha256: 053eadfefcd3cc7ac679b624bc081efdde4e6893a1a34617c99e0ac2d4970ca0
   - target_directory: src
     url: https://github.com/grpc/grpc/archive/v${{ version }}.tar.gz
@@ -27,7 +27,7 @@ build:
   noarch: python
   script:
     - cd dist
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   host:
@@ -40,6 +40,11 @@ requirements:
     - python >=${{ python_min }}
 
 tests:
+  - package_contents:
+      strict: true
+      site_packages:
+        - grpc_health/**
+        - grpc_health-${{ version }}.dist-info/**
   - python:
       pip_check: true
       python_version:

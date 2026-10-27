@@ -2,13 +2,13 @@
 schema_version: 1
 
 context:
-  version: "1.84.1"
+  version: "1.85.0"
   # this upstream pin appears in grpcio_version.py, and has always been the same as `version`
   grpcio_min: ${{ version }}
   # this upstream pin appears in setup.py, not updated w/r/t to code generation version
   protobuf_min: "7.35.1"
   protobuf_max: "8.0.0"
-  python_check_max: "3.14"
+  python_check_max: "3.15"
 
 package:
   name: grpcio-health-checking
@@ -16,18 +16,18 @@ package:
 
 source:
   - target_directory: dist
-    url: https://pypi.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
-    sha256: f7bdb5d5865cf2a6651ffc1cc8375fca955557f72fac5902cb4f524d09dd64ea
+    url: https://files.pythonhosted.org/packages/source/g/grpcio-health-checking/grpcio_health_checking-${{ version }}.tar.gz
+    sha256: 053eadfefcd3cc7ac679b624bc081efdde4e6893a1a34617c99e0ac2d4970ca0
   - target_directory: src
     url: https://github.com/grpc/grpc/archive/v${{ version }}.tar.gz
-    sha256: e3cd1dbeedc989a6bf863bc1f0762a7cd1feff5cfae7d520481a541ad23ca85e
+    sha256: 78d933f81e66d88c9f7a5ac419aa929691ef62b61d32a92f69c16aabf21ffabe
 
 build:
   number: 0
   noarch: python
   script:
     - cd dist
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   host:
@@ -40,6 +40,13 @@ requirements:
     - python >=${{ python_min }}
 
 tests:
+  - package_contents:
+      strict: true
+      files:
+        - etc/conda/test-files/grpcio-health-checking/**
+      site_packages:
+        - grpc_health/**
+        - grpcio_health_checking-${{ version }}.dist-info/**
   - python:
       pip_check: true
       python_version:
@@ -55,18 +62,18 @@ tests:
         - dist/setup.py
         - dist/grpc_version.py
         # the actual tests to run under coverage
-        - src/src/python/grpcio_tests/tests/health_check/
+        - src/src/python/grpcio_tests/tests/health_check/**
+        - src/src/python/grpcio_tests/tests_aio/health_check/**
         # test imports
-        - src/src/python/grpcio_tests/tests/__init__.py
-        - src/src/python/grpcio_tests/tests/_loader.py
-        - src/src/python/grpcio_tests/tests/_result.py
-        - src/src/python/grpcio_tests/tests/_runner.py
+        - src/src/python/grpcio_tests/tests/{__init__,_loader,_result,_runner}.py
         - src/src/python/grpcio_tests/tests/unit/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/common/__init__.py
         - src/src/python/grpcio_tests/tests/unit/framework/common/test_constants.py
         - src/src/python/grpcio_tests/tests/unit/test_common.py
         - src/src/python/grpcio_tests/tests/unit/thread_pool.py
+        # async imports
+        - src/src/python/grpcio_tests/tests_aio/unit/{__init__,_test_base}.py
     requirements:
       run:
         - pytest-cov

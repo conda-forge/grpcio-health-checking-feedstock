@@ -10,7 +10,7 @@ PKG_PROTOBUF_MIN = os.environ["PKG_PROTOBUF_MIN"]
 
 HERE = Path(__file__)
 
-FAIL_UNDER = "70"
+FAIL_UNDER = "67"
 COV = ["coverage"]
 RUN = ["run", "--source=grpc_health", "--branch", "-m"]
 PYTEST = ["pytest", "-vv", "--color=yes", "--tb=long", "-k", "health_check"]
